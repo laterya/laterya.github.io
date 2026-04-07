@@ -1,62 +1,45 @@
-# Astro Starter Kit: Blog
+# Laterya Notes
+
+一个部署到 GitHub Pages 的 Astro 个人博客，内容以 Markdown / MDX 为主，使用 GitHub Actions 自动构建发布。
+
+## 本地开发
 
 ```sh
-npm create astro@latest -- --template blog
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+如果网络环境较慢，可以临时挂代理再安装依赖：
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```sh
+HTTP_PROXY=http://127.0.0.1:7897 \
+HTTPS_PROXY=http://127.0.0.1:7897 \
+ALL_PROXY=socks5://127.0.0.1:7897 \
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 常用命令
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm run dev
+npm run build
+npm run preview
+npm run astro -- --help
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## 内容结构
 
-Any static assets, like images, can be placed in the `public/` directory.
+- `src/content/blog/`: 博客文章，支持 `.md` 和 `.mdx`
+- `src/pages/`: 页面入口
+- `src/components/`: 公共组件
+- `src/layouts/`: 文章布局
+- `.github/workflows/deploy.yml`: GitHub Pages 自动部署工作流
 
-## 🧞 Commands
+## 部署说明
 
-All commands are run from the root of the project, from a terminal:
+这个项目默认配置成 GitHub 用户站点仓库：
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- 仓库名：`laterya.github.io`
+- 站点地址：`https://laterya.github.io`
 
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+推送到 `main` 分支后，GitHub Actions 会自动构建并发布到 GitHub Pages。
