@@ -1,152 +1,25 @@
 ---
-import { Image } from 'astro:assets';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import { GITHUB_URL, SITE_DESCRIPTION, SITE_LOCALE, SITE_TITLE } from '../consts';
 
-const pageTitle = '关于';
-const rssHref = `${import.meta.env.BASE_URL}rss.xml`;
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/common/Markdown.astro";
+import I18nKey from "@/i18n/i18nKey";
+import { i18n } from "@/i18n/translation";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+
+const aboutPost = await getEntry("spec", "about");
+
+if (!aboutPost) {
+	throw new Error("About page content not found");
+}
+
+const { Content } = await render(aboutPost);
 ---
-
-<!doctype html>
-<html lang={SITE_LOCALE}>
-	<head>
-		<BaseHead title={pageTitle} description={SITE_DESCRIPTION} image={AboutHeroImage} />
-	</head>
-	<body>
-		<Header />
-		<main class="about-page">
-			<section class="about-hero surface-card">
-				<div class="about-copy">
-					<p class="eyebrow">ABOUT THIS SITE</p>
-					<h1>这是一个给长期项目留白的地方。</h1>
-					<p>
-						{SITE_TITLE} 的目标不是追热点，而是把那些值得反复打磨的想法、方案和项目整理成一篇篇可以回看的文章。
-					</p>
-					<p>
-						它同时承担三件事：沉淀技术判断、记录产品思考，以及给个人项目保留清晰的迭代轨迹。
-					</p>
-					<div class="about-actions">
-						<a class="button" href="/blog">阅读文章</a>
-						<a class="button button-secondary" href={GITHUB_URL} target="_blank" rel="noreferrer">
-							GitHub
-						</a>
-						<a class="button button-secondary" href={rssHref}>RSS</a>
-					</div>
-				</div>
-				<div class="about-image">
-					<Image src={AboutHeroImage} width={960} height={960} alt="Abstract editorial artwork" />
-				</div>
-			</section>
-
-			<section class="about-grid">
-				<article class="surface-card about-card">
-					<p class="eyebrow">WRITING SCOPE</p>
-					<h2>我会写什么</h2>
-					<ul>
-						<li>实际可复用的工程经验，而不是脱离场景的技巧清单。</li>
-						<li>关于产品设计、工作流和个人效率的长期观察。</li>
-						<li>正在推进的项目笔记，包括决定、取舍和复盘。</li>
-					</ul>
-				</article>
-				<article class="surface-card about-card">
-					<p class="eyebrow">STACK</p>
-					<h2>这个博客怎么搭</h2>
-					<ul>
-						<li>Astro 负责静态生成，内容通过 Content Collections 管理。</li>
-						<li>Markdown / MDX 作为主要写作格式，保留足够的结构化能力。</li>
-						<li>GitHub Pages 负责托管，GitHub Actions 自动构建与发布。</li>
-					</ul>
-				</article>
-				<article class="surface-card about-card">
-					<p class="eyebrow">PRINCIPLES</p>
-					<h2>我希望它保持什么气质</h2>
-					<ul>
-						<li>页面足够快，内容足够轻，结构足够稳定。</li>
-						<li>视觉上有个性，但不喧宾夺主，让阅读仍然是中心。</li>
-						<li>文章少一点没关系，但每篇都应当值得留下来。</li>
-					</ul>
-				</article>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
-<style>
-	.about-page {
-		display: grid;
-		gap: 1.5rem;
-	}
-
-	.about-hero {
-		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-		gap: 1.5rem;
-		padding: clamp(1.5rem, 4vw, 2.6rem);
-		align-items: center;
-	}
-
-	.about-hero h1 {
-		margin-bottom: 1rem;
-		font-size: clamp(2.8rem, 6vw, 4.8rem);
-	}
-
-	.about-copy p:not(.eyebrow) {
-		max-width: 38rem;
-		color: rgb(var(--muted-ink));
-	}
-
-	.about-actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.8rem;
-		margin-top: 1.5rem;
-	}
-
-	.about-image img {
-		width: 100%;
-		aspect-ratio: 1 / 1;
-		object-fit: cover;
-		border-radius: 24px;
-	}
-
-	.about-grid {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1rem;
-	}
-
-	.about-card {
-		padding: 1.35rem;
-	}
-
-	.about-card h2 {
-		font-size: 1.7rem;
-		margin-bottom: 0.7rem;
-	}
-
-	.about-card ul {
-		margin: 0;
-		padding-left: 1.1rem;
-		color: rgb(var(--muted-ink));
-	}
-
-	.about-card li + li {
-		margin-top: 0.55rem;
-	}
-
-	@media (max-width: 960px) {
-		.about-hero,
-		.about-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	@media (max-width: 640px) {
-		.about-hero {
-			padding: 1.25rem;
-		}
-	}
-</style>
+<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
+    <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <Markdown class="mt-2">
+                <Content />
+            </Markdown>
+        </div>
+    </div>
+</MainGridLayout>
