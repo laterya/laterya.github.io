@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
-  <rect width="1600" height="900" fill="#F7F1EA"/>
+  <rect width="1600" height="900" fill="#EEF4FB"/>
   <circle cx="1270" cy="180" r="320" fill="url(#a)" opacity=".95"/>
   <circle cx="290" cy="760" r="360" fill="url(#b)" opacity=".8"/>
-  <path d="M1032 0h568v402c-114 36-230 40-350-2-108-38-178-112-218-212V0z" fill="#C96B44" opacity=".16"/>
-  <path d="M0 636c116-48 232-66 348-54 170 16 314 78 438 172v146H0V636z" fill="#D99A6B" opacity=".3"/>
-  <path d="M588 146c80 50 150 120 216 210 38 54 92 96 162 124 46 18 100 30 162 36-96 54-196 80-300 80-138 0-258-42-362-126-82-66-164-108-246-126 42-72 104-138 188-198 58-42 118-42 180 0z" fill="#FFF9F4" opacity=".86"/>
+  <path d="M1032 0h568v402c-114 36-230 40-350-2-108-38-178-112-218-212V0z" fill="#4C82C5" opacity=".16"/>
+  <path d="M0 636c116-48 232-66 348-54 170 16 314 78 438 172v146H0V636z" fill="#90B6E4" opacity=".32"/>
+  <path d="M588 146c80 50 150 120 216 210 38 54 92 96 162 124 46 18 100 30 162 36-96 54-196 80-300 80-138 0-258-42-362-126-82-66-164-108-246-126 42-72 104-138 188-198 58-42 118-42 180 0z" fill="#F8FBFF" opacity=".88"/>
   <defs>
     <radialGradient id="a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1270 180) rotate(90) scale(320)">
-      <stop stop-color="#C96B44"/>
-      <stop offset="1" stop-color="#C96B44" stop-opacity="0"/>
+      <stop stop-color="#4C82C5"/>
+      <stop offset="1" stop-color="#4C82C5" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="b" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(290 760) rotate(90) scale(360)">
-      <stop stop-color="#E9BF95"/>
-      <stop offset="1" stop-color="#E9BF95" stop-opacity="0"/>
+      <stop stop-color="#C8DCF4"/>
+      <stop offset="1" stop-color="#C8DCF4" stop-opacity="0"/>
     </radialGradient>
   </defs>
 </svg>
